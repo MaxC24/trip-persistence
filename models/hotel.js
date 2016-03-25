@@ -5,7 +5,8 @@ var HotelSchema = new mongoose.Schema({
   name: String,
   place: PlaceSchema,
   num_stars: { type: Number, min: 1, max: 5 },
-  amenities: { type: [String] }
+  amenities: { type: [String] },
+  type: {type: String, default: 'hotel'}
 });
 
 module.exports = mongoose.model('Hotel', HotelSchema);

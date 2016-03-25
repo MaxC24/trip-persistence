@@ -8,7 +8,8 @@ var Day = new mongoose.Schema({
   number: Number,
   hotel: {
   	type: mongoose.Schema.Types.ObjectId,
-  	ref: 'Hotel'
+  	ref: 'Hotel',
+    default: null
   },
   restaurant: {
     type: [mongoose.Schema.Types.ObjectId],

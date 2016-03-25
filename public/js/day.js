@@ -74,7 +74,6 @@ var dayModule = (function () {
     if (this.hotel) show(this.hotel);
 
     $.get('/api/days/' + String(this.number), function(dayObj) {
-      console.log(dayObj);
       var restaurants = dayObj.restaurant;
       var activities = dayObj.activity;
       restaurants.forEach(show);
@@ -92,7 +91,6 @@ var dayModule = (function () {
     
 
     $.get('/api/days/' + String(this.number), function(dayObj) {
-      console.log(dayObj);
       var restaurants = dayObj.restaurant;
       var activities = dayObj.activity;
       restaurants.forEach(hide)
@@ -104,17 +102,24 @@ var dayModule = (function () {
 
   Day.prototype.addAttraction = function (attraction) {
     // adding to the day object
+    //console.log('acttraction:', attraction);
+
+    var self = this;
+    
     switch (attraction.type) {
       case 'hotel':
+        console.log('this.hotel:', this.hotel);
         if (this.hotel) {
+
           this.hotel.hide();
         }
 
         $.ajax({
           method: 'PUT',
           url: '/api/' + String(this.number) + '/hotels',
-          success: function(updatedDay) {
-            updatedDay.hotel.show();
+          data: { hotel: attraction._id },
+          success: function(hotelObj) {
+            self.hotel = attractionsModule.create(hotelObj);
           },
           error: console.error.bind(console)
         }); 

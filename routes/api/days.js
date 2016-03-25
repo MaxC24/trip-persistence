@@ -65,22 +65,7 @@ router.delete('/:id', function(req, res, next){
 })
 
 // Updating establishments on a given day
-router.put('/:id/hotels', function(req, res, next){
-	console.log('request received:', req.body);
-	var dayNum = req.params.id;
-	var newHotel = req.body.hotel;
-	Day.find({
-		number: dayNum
-	}).exec()
-	.then(function(dayToChange) {
-		dayToChange.hotel = newHotel;
-		return dayToChange.save();
-	})
-	.then(function(savedDay) {
-		res.json(savedDay)
-	})
-	.catch(next);
-})
+
 
 router.put('/:id/restaurants', function(req, res, next){
 	res.send('Put req received');
@@ -89,11 +74,5 @@ router.put('/:id/restaurants', function(req, res, next){
 router.put('/:id/activities', function(req, res, next){
 	res.send('Put req received');
 })
-
-
-
-
-
-
 
 module.exports = router;

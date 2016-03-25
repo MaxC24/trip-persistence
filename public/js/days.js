@@ -53,7 +53,6 @@ var daysModule = (function () {
     // var newDay = dayModule.create({ number: days.length + 1 }); // dayModule
     // days.push(newDay);
     $.post('/api/days', function(newDay) {
-      console.log(newDay);
       var newDay = dayModule.create(newDay);
       if (newDay.number === 1) {
         currentDay = newDay;

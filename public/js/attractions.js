@@ -66,6 +66,9 @@ var attractionsModule = (function () {
   };
 
   Attraction.prototype.hide = function () {
+    console.log('this:', this);
+    console.log('this.$itineraryItem:', this.$itineraryItem);
+
     this.$itineraryItem.detach(); // itinerary
     mapModule.hide(this.marker); // map
   };
